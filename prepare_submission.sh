@@ -49,8 +49,27 @@ function create_submission(){
     tar -cf /${BASEDIR}/${SUBMISSION_NAME} -C /tmp ${PROBLEM_NAME}
 }
 
+function valid_git_repo(){
+    git rev-parse --is-inside-work-tree >/dev/null 2>&1
+}
+
+function has_readme(){
+    [ -f ${BASEDIR}/README.md ]
+}
+
 if ! detectBinFiles ; then
     echo -e "[${RED}ERROR${NC}] Failed to find bin files"
+    exit -1
+fi
+
+if ! valid_git_repo ; then
+    echo -e "[${RED}ERROR${NC}] This is not a valid git repository!!, probably '.git' folder is missing"
+    exit -1
+fi
+
+if ! has_readme ; then
+    echo -e "[${RED}ERROR${NC}] 'README.md' is not present in project root folder"
+    exit -1
 fi
 
 if ! ${SETUP_FILE} ; then
