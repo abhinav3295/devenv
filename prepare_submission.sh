@@ -16,7 +16,7 @@ function detectBinFiles(){
         SETUP_FILE=${RETVAL_GET_CORRECT_FILENAME}
         echo -e "[${GREEN}SUCCESS${NC}] Using 'bin/${SETUP_FILE##*/}' as setup file"
     else
-        echo -e "[${RED}ERROR${NC}] Setup file not found in 'bin' folder"
+        echo -e "[${RED}ERROR${NC}] Setup file ('bin/setup') not found in root folder"
         return -1
     fi
 
@@ -24,7 +24,7 @@ function detectBinFiles(){
         FUNCTIONAL_TEST=${RETVAL_GET_CORRECT_FILENAME}
         echo -e "[${GREEN}SUCCESS${NC}] Using 'bin/${FUNCTIONAL_TEST##*/}' for executing functional test"
     else
-        echo -e "[${RED}ERROR${NC}] Functional Test file not found in 'bin' folder"
+        echo -e "[${RED}ERROR${NC}] Functional Test file ('bin/run_functional_tests') not found in root folder"
         return -1
     fi
 }
@@ -83,7 +83,7 @@ if ! ${FUNCTIONAL_TEST} ; then
     echo -e "[${RED}ERROR${NC}] Failed to execute functional test. Have you really finished the implementation?"
     exit -1
 else
-    echo -e "Sample tests executed, check console for resilt"
+    echo -e "Sample tests executed, check console for result"
 fi
 
 if ! create_submission; then
