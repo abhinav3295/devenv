@@ -54,7 +54,7 @@ function valid_git_repo(){
 }
 
 function has_readme(){
-    [ -f ${BASEDIR}/README.md ]
+    [[ -n $(find ${BASEDIR} -name "README.*" -maxdepth 1 ) ]]
 }
 
 if ! detectBinFiles ; then
@@ -68,7 +68,7 @@ if ! valid_git_repo ; then
 fi
 
 if ! has_readme ; then
-    echo -e "[${RED}ERROR${NC}] 'README.md' is not present in project root folder"
+    echo -e "[${RED}ERROR${NC}] 'README' is not present in project root folder"
     exit -1
 fi
 
