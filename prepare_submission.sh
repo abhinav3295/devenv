@@ -57,10 +57,16 @@ function has_readme(){
     [[ -n $(find ${BASEDIR} -name "README.*" -maxdepth 1 ) ]]
 }
 
+function fix_functional_test_runner(){
+    sed "s:^system cmd:exit system cmd:" -i ${FUNCTIONAL_TEST}
+}
+
 if ! detectBinFiles ; then
     echo -e "[${RED}ERROR${NC}] Failed to find bin files"
     exit -1
 fi
+
+fix_functional_test_runner
 
 if ! valid_git_repo ; then
     echo -e "[${RED}ERROR${NC}] This is not a valid git repository!!, probably '.git' folder is missing"
