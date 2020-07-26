@@ -182,4 +182,4 @@ RUN apk add bash git maven gradle tar
 ADD prepare_submission.sh /root/prepare_submission.sh
 WORKDIR /workspace
 ENV PROBLEM_NAME "sample_problem"
-CMD [ "bash", "-c", "/root/prepare_submission.sh", $PROBLEM_NAME ]
+CMD [ "bash", "-c", "/root/prepare_submission.sh", "$PROBLEM_NAME" ]
