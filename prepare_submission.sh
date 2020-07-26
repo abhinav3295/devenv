@@ -21,6 +21,14 @@ function detectBinFiles(){
         return -1
     fi
 
+    if getCorrectFileName ${CLEANUP}; then
+        CLEANUP=${RETVAL_GET_CORRECT_FILENAME}
+        echo -e "[${GREEN}SUCCESS${NC}] Using 'bin/${CLEANUP##*/}' for cleanup"
+    else
+        echo -e "[${RED}ERROR${NC}] Cleanup script ('bin/cleanup') not found in root folder"
+        return -1
+    fi
+
     if getCorrectFileName ${FUNCTIONAL_TEST}; then
         FUNCTIONAL_TEST=${RETVAL_GET_CORRECT_FILENAME}
         echo -e "[${GREEN}SUCCESS${NC}] Using 'bin/${FUNCTIONAL_TEST##*/}' for executing functional test"
