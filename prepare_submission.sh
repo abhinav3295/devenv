@@ -5,10 +5,11 @@ GREEN='\033[1;32m'
 NC='\033[0m'
 
 BASEDIR=`pwd`
-PROBLEM_NAME="parking_lot"
+PROBLEM_NAME="$1"
 SUBMISSION_NAME=${PROBLEM_NAME}.tar.gz
 SETUP_FILE=${BASEDIR}/bin/setup
 FUNCTIONAL_TEST=${BASEDIR}/bin/run_functional_tests
+CLEANUP=${BASEDIR}/bin/cleanup
 
 RETVAL_GET_CORRECT_FILENAME=""
 function detectBinFiles(){
@@ -44,6 +45,7 @@ function getCorrectFileName() {
 }
 
 function create_submission(){
+    ${CLEANUP} &&\
     rm -f ${BASEDIR}/${SUBMISSION_NAME} &&\
     cp -r ${BASEDIR} /tmp/${PROBLEM_NAME} &&\
     tar -cf /${BASEDIR}/${SUBMISSION_NAME} -C /tmp ${PROBLEM_NAME}
