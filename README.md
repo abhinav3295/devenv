@@ -2,7 +2,7 @@ This image provides a standardised development environment for writing submissio
 
 Currently it contains
 
-* Java : 8
+* Java : 13
   * Maven
   * Gradle
 * Ruby : 2.6.3
